@@ -1,25 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {Component} from 'react'
+import PiePicker from './PiePicker';
+import PieDesc from './PieDesc';
+import pieData from './pieData'
+import PieContext from './PieContext'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+    state = {
+        pie: "",
+        desc: ""
+    }
+
+    setDesc = (pieKey, index) => {
+        const pieId = pieData[index][pieKey];
+
+        this.setState({pie: pieId.displayName, desc: pieId.desc})
+    }
+
+    render() {
+        const contextValue = {
+            pieData: pieData,
+            pie: this.state.pie,
+            desc: this.state.desc,
+            handleClick: this.setDesc
+        }
+
+        return (
+            <div>
+                <PieContext.Provider value={contextValue}>
+                    <PiePicker pieData={pieData}/>
+                    <PieDesc/>
+                </PieContext.Provider>
+            </div>
+        )
+    }
 }
-
-export default App;
