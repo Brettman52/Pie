@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
 import PieContext from './PieContext'
 import PieType from './PieType'
@@ -19,37 +19,29 @@ const PieGroupContainer = styled.ul `
   display: flex;
   justify-content: space-evenly;
 `
+export default function PiePicker() {
 
-export default class PiePicker extends Component {
-
-    static contextType = PieContext;
-
-    getKey = () => {
+    const getKey = () => {
         const keyArray = []
-        for (let i = 0; i <= this.context.pieData.length - 1; i++) {
-            keyArray.push(Object.keys(this.context.pieData[i]).toString())
+        for (let i = 0; i <= pieData.length - 1; i++) {
+            keyArray.push(Object.keys(pieData[i]).toString())
         }
         return keyArray;
     }
 
-    render() {
-        const key = this.getKey();
-        const pies = this
-            .context
-            .pieData
-            .map((pie, i) => {
-                return (<PieType key={i} id={i} pieKey={key[i]} pieName={pie[key[i]].displayName} />)
-            })
+    const pieContext = useContext(PieContext);
+    const {pieData} = pieContext;
+    const key = getKey();
+    const pies = pieData.map((pie, i) => <PieType key={i} id={i} pieKey={key[i]} pieName={pie[key[i]].displayName}/>)
 
-        return (
-            <div>
-                <PieSelectorContainer>
-                    <PickerHeading>Pie Picker</PickerHeading>
-                    <PieGroupContainer>
-                        {pies}
-                    </PieGroupContainer>
-                </PieSelectorContainer>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <PieSelectorContainer>
+                <PickerHeading>Pie Picker</PickerHeading>
+                <PieGroupContainer>
+                    {pies}
+                </PieGroupContainer>
+            </PieSelectorContainer>
+        </div>
+    )
 }

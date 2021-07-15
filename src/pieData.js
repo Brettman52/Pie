@@ -10,7 +10,15 @@ const pieData = [
     {custardPie: {
         displayName: "Custard",
         desc: "So eggy..."
-    }}
+    }},
+    {blueberryPie: {
+        displayName: "Blueberry",
+        desc: "Berry good"
+    }},
+    {pecanPie: {
+        displayName: "Pecan",
+        desc: "So nutty!"
+    }},
 ];
 
 export default pieData

@@ -14,7 +14,6 @@ export default class App extends Component {
 
     setDesc = (pieKey, index) => {
         const pieId = pieData[index][pieKey];
-
         this.setState({pie: pieId.displayName, desc: pieId.desc})
     }
 
@@ -36,3 +35,37 @@ export default class App extends Component {
         )
     }
 }
+
+
+// export default function App() {
+//     state = {
+//         pie: "",
+//         desc: ""
+//     }
+
+
+//     const [pieInfo, setPieInfo] = useState()
+//     const setDesc = (pieKey, index) => {
+//         const pieId = pieData[index][pieKey];
+//         const {pie, desc} = pieInfo;
+//         setPieInfo({pie: pieId.displayName, desc: pieId.desc});
+//     }
+
+
+//     const contextValue = {
+//         pieData: pieData,
+//         pie: state.pie,
+//         desc: state.desc,
+//         handleClick: setDesc
+//     }
+
+//     return (
+//         <div>
+//             <PieContext.Provider value={contextValue}>
+//                     <PiePicker pieData={pieData}/>
+//                     <PieDesc/>
+//                 </PieContext.Provider>
+//         </div>
+//     )
+// }
+

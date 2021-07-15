@@ -1,21 +1,19 @@
-import React, { Component } from 'react'
+import React, {useContext} from 'react'
 import PieContext from './PieContext'
 import styled from 'styled-components'
 
-const Pie = styled.li`
+const Pie = styled.li `
     list-style: none;
+    cursor: pointer;
 `
 
-export default class PieType extends Component {
+export default function PieType(props) {
+    const pieContext = useContext(PieContext)
+    const {pieKey, id, pieName} = props;
 
-    static contextType = PieContext;
-
-    render() {
-        const {pieKey, id} = this.props;
-        return (
-            <Pie onClick={() => this.context.handleClick(pieKey, id)}>
-                <b>{this.props.pieName}</b>
-            </Pie>
-        )
-    }
+    return (
+        <Pie onClick={() => pieContext.handleClick(pieKey, id)}>
+            <b>{pieName}</b>
+        </Pie>
+    )
 }

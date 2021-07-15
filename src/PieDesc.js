@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
 import PieContext from './PieContext'
 
@@ -22,22 +22,20 @@ const DescContainer = styled.div `
 const DefaultMessage = styled.div `
 
 `
+export default function PieDesc() {
 
-export default class PieDesc extends Component {
+    const pieContext = useContext(PieContext);
+    const {desc} = pieContext;
 
-    static contextType = PieContext;
-    render() {
-        return (
-            <div>
-                <PieSelectorContainer>
-                    <DescHeading>Your Pie</DescHeading>
-                    <DescContainer>
-                        {!this.context.desc && 
-                        <DefaultMessage>Select a pie to continue!</DefaultMessage>} 
-                        {this.context.desc}
-                    </DescContainer>
-                </PieSelectorContainer>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <PieSelectorContainer>
+                <DescHeading>Your Pie</DescHeading>
+                <DescContainer>
+                    {!desc && <DefaultMessage>Select a pie to continue!</DefaultMessage>}
+                    {desc}
+                </DescContainer>
+            </PieSelectorContainer>
+        </div>
+    )
 }
