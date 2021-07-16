@@ -1,25 +1,26 @@
 const pieData = [
-    {applePie: {
+    {   type: "apple",
         displayName: "Apple",
         desc: "A warm apple pie"
-    }},
-    {lemonPie: {
+    },
+    {   type: "lemon",
         displayName: "Lemon",
         desc: "A citrus burst"
-    }},
-    {custardPie: {
+    },
+    {   type: "custard",
         displayName: "Custard",
         desc: "So eggy..."
-    }},
-    {blueberryPie: {
+    },
+    {   type: "blueberry",
         displayName: "Blueberry",
         desc: "Berry good"
-    }},
-    {pecanPie: {
+    },
+     {  type: "pecan",
         displayName: "Pecan",
         desc: "So nutty!"
-    }},
+    },
 ];
+
 
 export default pieData
 

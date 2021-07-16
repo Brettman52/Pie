@@ -21,18 +21,8 @@ const PieGroupContainer = styled.ul `
 `
 export default function PiePicker() {
 
-    const getKey = () => {
-        const keyArray = []
-        for (let i = 0; i <= pieData.length - 1; i++) {
-            keyArray.push(Object.keys(pieData[i]).toString())
-        }
-        return keyArray;
-    }
-
-    const pieContext = useContext(PieContext);
-    const {pieData} = pieContext;
-    const key = getKey();
-    const pies = pieData.map((pie, i) => <PieType key={i} id={i} pieKey={key[i]} pieName={pie[key[i]].displayName}/>)
+    const {pieData} = useContext(PieContext);
+    const pies = pieData.map(({displayName}, i) => <PieType key={i} id={i} pieName={displayName}/>)
 
     return (
         <div>

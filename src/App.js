@@ -6,27 +6,27 @@ import pieData from './pieData'
 import PieContext from './PieContext'
 
 export default function App() {
- 
+
     const [pieInfo, setPieInfo] = useState({pie: "", desc: ""})
-    const setDesc = (pieKey, index) => {
-        const pieId = pieData[index][pieKey];
-        setPieInfo({pie: pieId.displayName, desc: pieId.desc});
+    
+    const setDesc = (index) => {
+        setPieInfo({pie: pieData[index].displayName, desc: pieData[index].desc});
     }
+    const {pie, desc} = pieInfo;
 
     const contextValue = {
         pieData: pieData,
-        pie: pieInfo.pie,
-        desc: pieInfo.desc,
+        pie: pie,
+        desc: desc,
         handleClick: setDesc
     }
 
     return (
         <div>
             <PieContext.Provider value={contextValue}>
-                    <PiePicker pieData={pieData}/>
-                    <PieDesc/>
-                </PieContext.Provider>
+                <PiePicker pieData={pieData}/>
+                <PieDesc/>
+            </PieContext.Provider>
         </div>
     )
 }
-

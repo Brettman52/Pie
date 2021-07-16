@@ -6,13 +6,13 @@ const Pie = styled.li `
     list-style: none;
     cursor: pointer;
 `
-
 export default function PieType(props) {
-    const pieContext = useContext(PieContext)
-    const {pieKey, id, pieName} = props;
+
+    const {handleClick} = useContext(PieContext)
+    const {id, pieName} = props;
 
     return (
-        <Pie onClick={() => pieContext.handleClick(pieKey, id)}>
+        <Pie onClick={() => handleClick(id)}>
             <b>{pieName}</b>
         </Pie>
     )
